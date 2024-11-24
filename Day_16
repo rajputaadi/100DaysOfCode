@@ -1,0 +1,27 @@
+class Solution {
+public:
+
+    int solve(vector<int>& nums, int e, int s){
+        //case i chori karni h
+        int cash1 = 0;
+        if(s >e){
+            return 0;
+            }
+        int option1 = nums[s] + solve(nums, e,s+2);
+        int option2 = solve(nums, e,s+1);
+
+        int fans = max(option1,option2);
+        return fans;
+    }
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n==1){
+            return nums[0];
+        }
+
+        int option1 = solve(nums,n-2,0);
+        int option2 = solve(nums,n-1,1);
+        int  ans = max(option1,option2);
+        return ans;
+    }
+};
